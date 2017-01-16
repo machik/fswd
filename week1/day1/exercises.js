@@ -96,6 +96,9 @@ function splitTheBill(obj) {
 	Object.keys(obj).forEach(key => output[key] = average - obj[key]);
 	return output;
 }
+//  var avg = Object.values(group).reduce(function(acc, val, index, values) {
+//     return acc + (val / values.length);
+//   }, 0);
 
 var group = {
     Amy: 20,
@@ -140,6 +143,19 @@ function fibs(n) {
 		arr.push(arr[arr.length-1] + arr[arr.length-2])
 	
 	return arr;
+}
+
+
+function fibsRec(n) {
+  if (n === 1)
+    return [0];
+  if (n === 2)
+    return [0, 1];
+
+  var prevFibs = fibs(n - 1);
+  var lastIndex = prevFibs.length - 1;
+
+  return prevFibs.concat([prevFibs[lastIndex] + prevFibs[lastIndex - 1]]);
 }
 
 console.log(fibs(3)); // => [0, 1, 1]

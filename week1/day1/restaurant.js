@@ -3,10 +3,12 @@ function Client(name, id) {
 	this.id = id;
 }
 
+
 function Ingredient(name, cost) {
 	this.name = name;
 	this.cost = cost;
 }
+
 
 function Dish(name, prize, ingredients) {
 	this.name = name;
@@ -24,7 +26,6 @@ Dish.prototype.profit = function() {
 };
 
 
-
 function Restaurant() {
 	this.orders =  {};
 }
@@ -36,11 +37,9 @@ Restaurant.prototype.orderDish = function(dish, client) {
 		this.orders[client.name] = [dish];
 };	
 
-Restaurant.prototype.printOrders = function() {
-	const clients = Object.keys(this.orders);
-	clients.forEach(client => {
-		this.orders[client].forEach((order, index) => console.log(`Order #${index}: - ${order.cost}`));
-	});
+Restaurant.prototype.printOrders = function(client) {
+	console.log(client.name);
+	this.orders[client].forEach((order, index) => console.log(`Order #${index}: - ${order.price}`));
 };
 
 Restaurant.prototype.printCheck = function(client) {
@@ -69,14 +68,17 @@ Restaurant.prototype.profitOfACustomer = function(client) {
 	return profit;
 };
 
-var cheese = new Ingredient('Cheese', 5);
-var pepperoni = new Ingredient('Pepperoni', 8);
-var dough = new Ingredient('Dough', 2);
-var lettuce = new Ingredient('Lettuce', 1);
-var tomato = new Ingredient('Tomato', 2);
 
-var salad = new Dish('Salad', 30, [lettuce, cheese, tomato]);
+
+var cheese = new Ingredient('Cheese', 5);
+var pepperoni = new Ingredient('Pepperoni', 10);
+var dough = new Ingredient('Dough', 2);
+var lettuce = new Ingredient('Lettuce', 3);
+var tomato = new Ingredient('Tomato', 4);
+
 var pizza = new Dish('Pizza', 35, [cheese, pepperoni, dough]);
+var salad = new Dish('Salad', 30, [lettuce, cheese, tomato]);
+
 var restaurant = new Restaurant();
 
 var pluto = {
