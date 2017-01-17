@@ -1,3 +1,5 @@
+'use strict'
+
 console.log('\n\n1.');
 function isString(str) {
 	return typeof str === 'string';
@@ -11,10 +13,10 @@ console.log('\n\n2.');
 function isArray(arr) {
 	return Array.isArray(arr);
 }
-console.log(isArray('hello')); // => false
-console.log(isArray(['hello'])); // => true
-console.log(isArray([2, {}, 10])); // => true
-console.log(isArray({ a: 2 })); // => false
+console.log(isArray('hello')); 		// => false
+console.log(isArray(['hello'])); 	// => true
+console.log(isArray([2, {}, 10]));  // => true
+console.log(isArray({ a: 2 })); 	   // => false
 
 console.log('\n\n3.');
 function areSameType(arr) {
@@ -48,8 +50,8 @@ function longest(st1, st2) {
 	});
 }
 
-a = 'xyaabbbccccdefww'
-b = 'xxxxyyyyabklmopq'
+var a = 'xyaabbbccccdefww'
+var b = 'xxxxyyyyabklmopq'
 console.log(longest(a, b)); // => 'abcdefklmopqwxy'
 
 a = 'abcdefghijklmnopqrstuvwxyz'
@@ -57,8 +59,11 @@ console.log(longest(a, a)); // => 'abcdefghijklmnopqrstuvwxyz'
 
 console.log('\n\n5. ');
 function convert(num) {
-	const numbers = num.toString().split('');
-	return numbers.sort((a, b) => a > b ? -1 : 1);
+	return num.toString()
+		.split('')
+		.map(num => Math.floor(num))			// Converts to Number
+		.sort()
+		.reverse();
 }
 
 console.log(convert(429563)); // => [9, 6, 5, 4, 3, 2]
@@ -92,7 +97,7 @@ console.log('\n\n8.');
 
 function splitTheBill(obj) {
 	let output = {};
-	const average = Object.values(obj).reduce((a, b) => a+b)/Object.values(obj).length;
+	const average = Object.values(obj).reduce((a, b) => a + b)/Object.values(obj).length;
 	Object.keys(obj).forEach(key => output[key] = average - obj[key]);
 	return output;
 }
@@ -155,6 +160,7 @@ function fibsRec(n) {
   var prevFibs = fibs(n - 1);
   var lastIndex = prevFibs.length - 1;
 
+  // does not work with push -> some reference problem
   return prevFibs.concat([prevFibs[lastIndex] + prevFibs[lastIndex - 1]]);
 }
 
